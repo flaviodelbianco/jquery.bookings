@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Jquery Booking Plugin</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../source/css/jquery.bookings.css">
+</head>
+
+<body>
+    <h2>Example 1</h2>
+    <div id="bookingsTable1"></div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="../source/js/jquery.bookings.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#bookingsTable1').bookings({
+                strip: {
+                    height: 25,
+                    top: 1,
+                    bottom: 1
+                },
+                data: 'json_bookings.php',
+                activeTooltip: true,
+                onLoad: function (bookings) {
+                    $.each(bookings, function(k, booking) {
+                        $('#'+booking.id).css('cursor', 'pointer').click(function () {
+                            alert('This is the booking n. '+booking.label);
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
